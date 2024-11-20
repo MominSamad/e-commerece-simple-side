@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirt Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: url('https://www.sliderrevolution.com/wp-content/uploads/2023/06/fashion-shop-slider.gif') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caption {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.caption h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.caption p {
+    font-size: 1.2em;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.cta-button {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: #e64a19;
+}
+
+.shop {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.product-categories {
+    margin-bottom: 30px;
+}
+
+.category-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.category-button:hover {
+    background-color: #555;
+}
+
+.sub-category-group {
+    display: none; /* Hide sub-category buttons by default */
+    margin-top: 10px;
+}
+
+.sub-category-button {
+    background-color:black;
+    color: #fffdfd;
+    padding: 8px 16px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.sub-category-button:hover {
+    background-color: #666;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    display: none; /* Hidden by default, shown by JavaScript */
+}
+
+.product[data-category="men"] {
+    display: block; /* Show men's products by default */
+}
+
+.product img {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 700px; /* Use full width of the container */
+    max-width: 330px; /* Set maximum width for image */
+    max-height: 360px; /* Set maximum height for image */
+    display: block;
+    margin: 0 auto 10px; }
+.product:hover {
+    transform: scale(1.05);
+}
+
+.buy-now {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.buy-now:hover {
+    background-color: #2980b9;
+}
+
+.add-to-cart {
+    background-color: #3498db;
+    color: rgb(243, 239, 239);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.add-to-cart:hover {
+    background-color: #2980b9;
+}
+#animatedSkirt {
+    background-color: #f8eaf5;
+    position: relative;
+    overflow: hidden;
+    width: 300%;
+    height: 400px; /* Adjust the height to match the image's height */
+}
+
+#animatedSkirt img {
+    width: 100%;
+    max-width: none; /* Ensure the image can exceed the container's width */
+    height: 100%;
+    position: absolute;
+    animation: moveHorizontally 10s linear infinite;
+}
+
+/* Horizontal movement animation */
+@keyframes moveHorizontally {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.contact {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact-form button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+</style>
+<body>
+    <header>
+        <h1>T-Shirt Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+       
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="caption">
+            <h2>Fashion for Everyone</h2>
+            <p>Discover our exclusive collections for men, women, and children.</p>
+            <a href="#shop" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="shop" class="shop">
+        <h2>Our Products</h2>
+        <div class="product-categories">
+            <button class="category-button" data-category="men">Men</button>
+            <button class="category-button" data-category="ladies">Ladies</button>
+            <button class="category-button" data-category="children">Children</button>
+
+                    <!-- Sub-Category Buttons for Men -->
+        <div class="sub-category-group" data-main-category="men">
+            <button class="sub-category-button" data-sub-category="T-Shirt + Short">T-Shirt + Short</button>
+            <button class="sub-category-button" data-sub-category="shorts">Shorts</button>
+            <button class="sub-category-button" data-sub-category="Shirts">Shirts</button>
+            <button class="sub-category-button" data-sub-category="Shoes"> Shoes</button>
+        </div>
+        
+        <!-- Sub-Category Buttons for Ladies -->
+        <div class="sub-category-group" data-main-category="ladies">
+            <button class="sub-category-button" data-sub-category="dresses">Dresses</button>
+            <button class="sub-category-button" data-sub-category="skirts">Skirts</button>
+        </div>
+        
+        <!-- Sub-Category Buttons for Children -->
+        <div class="sub-category-group" data-main-category="children">
+            <button class="sub-category-button" data-sub-category="Clothes">Clothes</button>
+            <button class="sub-category-button" data-sub-category="Rompers">Rompers</button>
+        </div>
+    </div>
+
+        <div class="product-grid">
+            <!-- Men's Products -->
+              <!-- Men's SHORTS + SHIRTS -->
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://teetall.pk/cdn/shop/products/teetallseti.png?v=1678802360" alt="Men's Shorts 1">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                 <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://cdn.shopify.com/s/files/1/0733/6424/2747/files/memnu0719f.png?v=1689815258&width=533" alt="Men's Shorts 2">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://cdn.shopify.com/s/files/1/0733/6424/2747/files/lionset4.png?v=1683425646&width=533" alt="Men's Shorts 3">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://img.joomcdn.net/4ff46b568af8023f619f8468a520d995c64fd4f1_original.jpeg" alt="Men's Shorts 4">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://img.joomcdn.net/b5d0d74e81524ce131e3988975104fb03ddc8822_original.jpeg"  alt="Men's Shorts 5">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://img.joomcdn.net/73214b3b7562ad3ffcb3ea7896c38466c8c47563_original.jpeg"  alt="Men's Shorts 6">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://m.media-amazon.com/images/I/61jw-INzyaL._AC_SX679_.jpg"  alt="Men's Shorts 7 ">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://m.media-amazon.com/images/I/61aIYTxLSwL._AC_SX679_.jpg"  alt="Men's Shorts 8">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="T-Shirt + Short">
+                <img src="https://m.media-amazon.com/images/I/619NNWQiJIL._AC_SX679_.jpg"  alt="Men's Shorts 9">
+                <h3>SHORT + T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+                         <!-- SHIRTS -->   
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/61KGOx71LIL._AC_UY1000_.jpg" alt="Men's Shirt 1">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/410dfKqgYiL._AC_SY350_.jpg" alt="Men's Shirt 2">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/71tdCBaJkmL._AC_SY879_.jpg" alt="Men's Shirt 3">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://i5.walmartimages.com/seo/white-shirts-for-men-mens-fashion-casual-button-lapel-cotton-solid-color-pocket-long-sleeve-shirt-top_56cfd00f-eab5-4d49-be7f-a206907f43f1.d3c0b481f286e409767f7d5f5afd14d4.jpeg" alt="Men's Shirt 4">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/81tXCfO88QL._AC_UY350_.jpg" alt="Men's Shirt 5">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://sg-test-11.slatic.net/p/eddecf036cbf7acbfef6b9e0ef4078c8.jpg" alt="Men's Shirt 6">
+                <h3> MEN'S SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- T-Shirt -->
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/412abJXRsgL._AC_.jpg" alt="Men's Shirt 1">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://i5.walmartimages.com/seo/JUUYY-Men-s-Casual-Muscle-Polo-Shirts-Short-Sleeve-Slim-Fit-Golf-Shirt-Casual-Stretch-Workout-T-Shirts-Gray-XXL_bf8e6a14-f64a-441e-b81f-c184994428c2.b6c6bee25975dd1395a4951d1c43c3cb.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Men's Shirt 2">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://i5.walmartimages.com/asr/97bc8c2c-2422-4b34-b506-6a80e8b2be8a.43711a473a1d1828c55f7a3e47426d22.jpeg?odnHeight=50px&odnWidth=50px&odnBg=FFFFFF" alt="Men's Shirt 3">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://i5.walmartimages.com/seo/GLESTORE-Polo-Shirts-for-Men-Casual-Polo-Shirts-Short-Sleeve-Elastic-Bar-Burgundy-2XL_f5aabf59-c9bf-445f-98c1-9b676559cb3c.94478447af933cedfdcf2b0bf91ac2de.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Men's Shirt 4">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/712BLPvVu3L._AC_AC_SY350_QL65_.jpg" alt="Men's Shirt 5">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shirts">
+                <img src="https://m.media-amazon.com/images/I/41alGgj4OnL._AC_SY1000_.jpg" alt="Men's Shirt 6">
+                <h3> MEN'S T-SHIRT</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+                 <!-- Men's Shorts -->
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuQKis3oGSgt2QbyXcw0sVt4Fw8Fcrn_Db4g&s" alt="Men's Shorts 1">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzLGupv37y7DqV2pfvVMyGv3wKa1Wm-qZphxpZzItSRtKR1uIJNZkigflXOH7qUGCjoTM&usqp=CAU" alt="Men's Shorts 2">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://i5.walmartimages.com/asr/26e203b8-12f9-4bed-b14e-d5d0adaaeb2b.9c220de1264a0a6f4e161b2b4a05b9cf.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Men's Shorts 3">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Cargo Shorts -->
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/1233340ae43b1601238c6ed83d93379a.jpg_720x720q80.jpg_.webp" alt="Men's Shorts 1">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://i5.walmartimages.com/seo/YYDGH-On-Clearance-Men-s-Straight-Fit-Cargo-Shorts-Men-s-Shorts-Elastic-Waistband-Relaxed-Summer-Casual-Drawstring-Cotton-Work-Shorts-White-M_09404d15-c7d6-4572-b336-93103d9d1c90.3d868f6e6b5262de14e19e76ff489303.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Men's Shorts 2">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/14/2167703/2.jpg?8750" alt="Men's Shorts 3">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://cdn11.bigcommerce.com/s-lm4mhe1hly/images/stencil/original/image-manager/shrts-gray1-show-2.png" alt="Men's Shorts 4">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://cdn11.bigcommerce.com/s-lm4mhe1hly/images/stencil/original/image-manager/shrts-khaki1-show-3.png" alt="Men's Shorts 5">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://m.media-amazon.com/images/I/61B3n0D5-NL._AC_SX385_.jpg" alt="Men's Shorts 6">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Fitness Short -->
+             <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://contents.mediadecathlon.com/p2197356/20ec45d54c1ff25c1d2a554ad65cd203/p2197356.jpg?format=auto&quality=70&f=2520x0" alt="Men's Shorts 7">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://au.gympluscoffee.com/cdn/shop/files/essential-8-shorts-in-black-shorts-gym-coffee-1_5f702b05-5243-4ed3-b216-4fb292844fbe.jpg?v=1717156921&width=2000" alt="Men's Shorts 8">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://static.thcdn.com/productimg/1600/1600/12373683-8334811886578460.jpg" alt="Men's Shorts 9">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+             <!-- Men's Shoes -->
+             <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/95/116634/1.jpg?0556" alt="Men's Shoes 1">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://i.pinimg.com/736x/1e/cf/9e/1ecf9ec9684d8fd19127b57439705753.jpg" alt="Men's Shoes 2">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://uomoattire.com/cdn/shop/products/34-formal_shoes_1000x.jpg?v=1666352351" alt="Men's Shoes 3">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/8/333936196/ZZ/BK/BI/190611978/1525b7f2-fa89-4e10-89cc-5631266f80b9-500x500.jpg" alt="Men's Shoes 4">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://adlershoe.com/cdn/shop/files/Photoroom-20240220-171252.jpg?v=1708535197&width=533" alt="Men's Shoes 5">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://intl.shahidafridistore.com/cdn/shop/files/BLACKJACQUARDPESHAWARICHAPPALS-1000x1500-A.jpg?v=1709802440" alt="Men's Shoes 6">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Men Boot Shoes-->
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://img.ltwebstatic.com/images3_spmp/2023/09/23/a7/1695434146a151b0a36b5525d81f8180d461e84bbc_thumbnail_720x.webp" alt="Men's Shoes 1">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://m.media-amazon.com/images/I/81Y6tclYweL._SY395_.jpg" alt="Men's Shoes 2">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://images.meesho.com/images/products/309231517/i2liu_512.jpg" alt="Men's Shoes 3">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://img.ltwebstatic.com/images3_spmp/2023/06/11/16864530639fa4c0ee71810fa573ad40ed7356a73b_thumbnail_720x.webp" alt="Men's Shoes 4">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://img.ltwebstatic.com/images3_spmp/2023/09/25/df/1695634590e91f89bc75e759782048ed86c692373a_thumbnail_720x.jpg" alt="Men's Shoes 5">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://img.ltwebstatic.com/images3_spmp/2023/12/08/98/17020204835f49fa5cd48cfa87cc13b3905df50fc9_thumbnail_720x.webp" alt="Men's Shoes 6">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Men Joggars Shoes-->
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://kaisz.pk/wp-content/uploads/2022/11/Flyknit-Black-Orange-1.jpg" alt="Men's Shoes 1">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://kaisz.pk/wp-content/uploads/2022/11/Flyknit-3-Blue-White-1-600x800.jpg" alt="Men's Shoes 2">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://kaisz.pk/wp-content/uploads/2022/11/Flyknit-Lunar-3-Grey-Green-600x800.jpg" alt="Men's Shoes 3">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://trex.com.pk/uploads/trex/ioAPVxdfxMQozq5j7jHalyO69E8pVraq3jp8Vh0k.jpg" alt="Men's Shoes 4">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://trex.com.pk/uploads/trex/gzm8aXMWINCbtEYGMH8qIrgRd5411SAFHBc8Kdq3.jpg" alt="Men's Shoes 5">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="men" data-sub-category="Shoes">
+                <img src="https://trex.com.pk/uploads/trex/ueh5ubVjn0l9p7oXzK7eekC8cuDFHoGr9QkOCZ1x.JPG" alt="Men's Shoes 6">
+                <h3>Men's Shoes</h3>
+                <p>$15.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+
+            <!-- Ladies' Products -->
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/2pc-stitched-embroidered-lawn-shirt-and-dupatta-ksde-2497-embroidered-khas-stores-469579.webp?v=1720629976&width=700" alt="Ladies' Dress 1">
+                <br>
+                <i><h3>Stitched Embroidered Lawn Shirt with Silk Dupatta
+                    Color: Pink Flare</h3></i>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+    <div class="product" data-category="ladies" data-sub-category="dresses">
+               <img src="https://www.khasstores.com/cdn/shop/files/2pc-stitched-embroidered-lawn-shirt-and-trouser-kste-2681-embroidered-khas-stores-749856.webp?v=1720630014&width=700" alt="Ladies' Dress 2 ">
+               <br>
+                <h3><i>2PC Stitched Embroidered Lawn Shirt and Trouser KSTE-2681</i><h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/2pc-stitched-embroidered-lawn-shirt-and-trouser-kste-2678-embroidered-khas-stores-476698.webp?v=1720629956&width=700" alt="Ladies' Dress 3">
+                <br>
+                <h3><i>2PC Stitched Embroidered Lawn Shirt and Trouser KSTE-2678</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/2pc-stitched-embroidered-lawn-shirt-and-trouser-kste-2682-embroidered-khas-stores-203639.webp?v=1720629728&width=700" alt="Ladies' Dress 4">
+                <br>
+                <h3><i>2PC Stitched Embroidered Lawn Shirt and Trouser KSTE-2682</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://cdn.shopify.com/s/files/1/1136/8498/files/2pc-stitched-embroidered-lawn-shirt-and-trouser-kste-2680-embroidered-khas-stores-862176.webp?v=1720629996&width=400" alt="Ladies' Dress 5">
+                <br>
+                <h3><i>2PC Stitched Embroidered Lawn Shirt and Trouser KSTE-2680</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/2pc-stitched-embroidered-lawn-shirt-and-dupatta-ksde-2499-embroidered-khas-stores-987740.webp?v=1720629992&width=700" alt="Ladies' Dress 6">
+                <br>
+                <h3><i>2PC Stitched Embroidered Lawn Shirt and Dupatta KSDE-2499</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-embroidered-unstitched-jacquard-suit-kcne-2622-embroidered-khas-stores-508779.webp?v=1720759199&width=700" alt="Ladies' Dress 7">
+                <br>
+                <h3><i>3PC Embroidered Unstitched Jacquard Suit KCNE-2622
+                </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-embroidered-unstitched-jacquard-suit-kcne-2618-embroidered-khas-stores-595236.webp?v=1720759006&width=700" alt="Ladies' Dress 8">
+                <br>
+                <h3><i>3PC Embroidered Unstitched Jacquard Suit KCNE-2618</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-embroidered-unstitched-jacquard-suit-kcne-2619-embroidered-khas-stores-837732.webp?v=1720759213&width=700" alt="Ladies' Dress 9">
+                <br>
+                <h3><i>3PC Embroidered Unstitched Jacquard Suit KCNE-2619</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2544-printed-khas-stores-199245.webp?v=1711556991&width=700" alt="Ladies' Dress 10">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2544</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2552-printed-khas-stores-893710.webp?v=1711556962&width=700" alt="Ladies' Dress 11">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2552 </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2548-printed-khas-stores-393463.webp?v=1711556938&width=700" alt="Ladies' Dress 12">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2548 </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2550-printed-khas-stores-135937.webp?v=1712374660&width=700" alt="Ladies' Dress 13">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2550</i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div> 
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2554-printed-khas-stores-911037.webp?v=1709921130&width=700" alt="Ladies' Dress 14">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2554  </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/printed-lawn-stitched-shirt-dr-2543-printed-khas-stores-890344.webp?v=1709921147&width=700" alt="Ladies' Dress 15">
+                <br>
+                <h3><i>Printed Lawn Stitched Shirt DR-2543 </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-printed-unstitched-lawn-suit-kla-2804-printed-khas-stores-182794.webp?v=1722381075&width=700" alt="Ladies' Dress 16">
+                <br>
+                <h3><i>3PC Printed Unstitched Lawn Suit KLA-2804    </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-printed-unstitched-lawn-suit-kla-2806-printed-khas-stores-904271.webp?v=1722381001&width=700" alt="Ladies' Dress 17">
+                <br>
+                <h3><i>3PC Printed Unstitched Lawn Suit KLA-2806 </i></h3>
+                 <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="dresses">
+                <img src="https://www.khasstores.com/cdn/shop/files/3pc-printed-unstitched-lawn-suit-kla-2761-printed-khas-stores-765366.webp?v=1720630091&width=700" alt="Ladies' Dress 18">
+                <br>
+                <h3><i>3PC Printed Unstitched Lawn Suit KLA-2761  </i></h3>
+                <p>$20.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+                    <!-- SKIRTS -->
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/81K2DbwAYYL._AC_SX466_.jpg" alt="Ladies' Skirt 1">
+                <h3>A-Line Swing Midi  Skirt</h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/814ATgNHuML._AC_SX466_.jpg" alt="Ladies' Skirt 2" >
+                <h3>A-Line Swing Midi Skirt</h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/71aM9eCR2qL._AC_SX466_.jpg" alt="Ladies' Skirt 3" >
+                <h3>A-Line Swing Midi  Skirt</h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/51ObBQBOzsL._AC_SX466_.jpg" alt="Ladies' Skirt 4">
+                <h3><i>A-Line Midi Length Skirt</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/51OPeXe9QyL._AC_SX466_.jpg" alt="Ladies' Skirt 5">
+                <h3><i>A-Line Midi Length Skirt</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/51BRfcOt+NL._AC_SX466_.jpg" alt="Ladies' Skirt 6">
+                <h3><i>A-Line Midi Length Skirt</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+           
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/61PNC3HwlXL._AC_UY1000_.jpg" alt="Ladies' Skirt 7">
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/61dJnimAkaS._AC_SL1500_.jpg" alt="Ladies' Skirt 8" >
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://i5.walmartimages.com/seo/Maxi-Skirts-For-Women-s-Elastic-High-Waist-Boho-Maxi-Skirt-Ruffle-A-Line-Swing-Long-Skirts-Pink_496b9dd0-965f-4981-9156-c783bdd931ca.10d003d43a9e514c168532f0e7ebd891.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Ladies' Skirt 9" >
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/31RBrVW32NL._AC_SY1000_.jpg" alt="Ladies' Skirt 10" >
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/61hGQwCTZtL._AC_UY350_.jpg" alt="Ladies' Skirt 11" >
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/612jw+V2xcL._AC_SY879_.jpg" alt="Ladies' Skirt 12" >
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product" data-category="ladies" data-sub-category="skirts" id="animatedSkirt">
+                <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/280d1036-36bf-41af-8b7d-0d200cc6a524.__CR0,0,970,600_PT0_SX970_V1___.jpg" alt="Women's Elegant A-Line Long Skirts">
+            </div>
+           
+            
+            
+            <!-- Children's Products -->
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://s.alicdn.com/@sc04/kf/H37e5f5c1d00f48d6a6703cb423f8e0eb0.jpg" alt="Children's Clothes 1">
+                <h3>Children's Clothes</h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://s.alicdn.com/@sc04/kf/H5da7972b3cd34d1d811b23adb11f32516.jpg" alt="Children's Clothes 2">
+                <h3>Children's Clothes</h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://s.alicdn.com/@sc04/kf/He4a44a6c89df4e45b78d98592423e51eM.jpg" alt="Children's Clothes 3">
+                <h3>Children's Clothes</h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://www.mamaslittle.com/cdn/shop/files/12817_693x.jpg?v=1710575064%201x,//www.mamaslittle.com/cdn/shop/files/12817_693x@2x.jpg?v=1710575064%202x" alt="Children's Clothes 4">
+                <h3><i>Pokemon Hardwork Black 2 piece suit 12817</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://www.mamaslittle.com/cdn/shop/files/13102_693x.jpg?v=1719496113%201x,//www.mamaslittle.com/cdn/shop/files/13102_693x@2x.jpg?v=1719496113%202x" alt="Children's Clothes 5">
+                <h3><i>Marvels Avengers Grey 2 piece suit 13102</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://www.kiddie.pk/cdn/shop/files/12821_1200x.jpg?v=1710577166" alt="Children's Clothes 6">
+                <h3><i>Bear Cat 2 piece suit 12821</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- SWEAT SHIRT-->
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://www.kiddie.pk/cdn/shop/products/3640_396x@2x.jpg?v=1668849079" alt="Children's Clothes 1">
+                <h3><i>LFT Pink Heart Terry Sweatshirt 3640</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://www.kiddie.pk/cdn/shop/products/9561E-59X-001-1_ca171d5d-b77b-46d6-b692-9bbffea68f81_396x@2x.jpg?v=1702733917" alt="Children's Clothes 2">
+                <h3><i>Fox Bunny Fox Face Blue Knitted Sweater 11535</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://i5.walmartimages.com/seo/Toddler-Kids-Girl-Boy-Leopard-Print-Sweater-Infant-Kids-Casual-Shirts-Pullover-Top-T-Shirt-Sweatshirts-Clothes_af0cfc93-019b-4fed-a6f6-442209e8c24a.2ee095fb2fef342dd318283417e7f02a.jpeg" alt="Children's Clothes 3">
+                <h3><i>Toddler Kids Girl Boy Leopard Print Sweater</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- GIRL KID-->
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://assets.ajio.com/medias/sys_master/root/20220112/ozlb/61dde93ef997dd66231be427/-473Wx593H-463641029-cream-MODEL.jpg" alt="Children's Clothes 1">
+                <h3><i> Floral A-Line Dress</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://m.media-amazon.com/images/I/71yi-IFOKLL._AC_SX522_.jpg" alt="Children's Clothes 2">
+                <h3><i>Girl Flying Sleeve Floral Dress 6 Colors Floral Dress
+                </i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Clothes">
+                <img src="https://m.media-amazon.com/images/I/71AARQ2l9HL._AC_SX522_.jpg" alt="Children's Clothes 3">
+                <h3><i>Floral Prints Princess Dress</i></h3>
+                <p>$10.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- ROMPERS -->
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://oshkoshau-5857.kxcdn.com/images/products/1M732910/1M732910_NOCOLOUR_1.jpg" alt="Children's Rompers 1">
+                <h3><i>Carter's 2-Piece Car Hooded Bodysuit Pant Set (6 Months) Heather/Black</i></h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://www.sndkids.com/cdn/shop/products/fine_GRY_238075-468637.jpg?v=1574268176" alt="Children's Rompers 2">
+                <h3><i>Carters Boys 0-24 Months Pocket Monster Bodysuit Pant Set
+                </i></h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://i5.walmartimages.com/asr/5c97e784-7dfe-4e42-82e5-51d0b8eeee75_1.f5075ae7e81490afce49dd5a6e809014.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF" alt="Children's Rompers 3">
+                <h3><i>Carters Baby Boys Striped Bear Hoodie Bodysuit Set
+                </i></h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://xcdn.next.co.uk/COMMON/Items/Default/Default/ItemImages/AltItemShot/315x472/D72733s.jpg" alt="Children's Rompers 4">
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://xcdn.next.co.uk/COMMON/Items/Default/Default/ItemImages/AltItemShot/315x472/D75535s.jpg" alt="Children's Rompers 5">
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://www.kiddie.pk/cdn/shop/files/2ded_396x@2x.jpg?v=1720991049" alt="Children's Rompers 6">
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://i.ebayimg.com/images/g/B7QAAOSwTIVkmRKX/s-l1200.webp" alt="Children's Rompers 7">
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://oshkoshau-5857.kxcdn.com/images/products/18641810/M-18641810_NOCOLOUR_1.jpg" alt="Children's Rompers 8">
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-category="children" data-sub-category="Rompers">
+                <img src="https://oshkoshau-5857.kxcdn.com/images/products/1O628210/1O628210_NOCOLOUR_1.jpg" alt="Children's Rompers 9"> 
+                <h3>Children's Rompers</h3>
+                <p>$12.00</p>
+                <button class="buy-now" id="buyNowButton">Buy Now</button> <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Add more products here with appropriate data-category and data-sub-category attributes -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 Custom T-Shirt Store</p>
+    </footer>
+  
+</body>
+</html>
+
+    <script src="script.js"></script>
+</body>
+</html>

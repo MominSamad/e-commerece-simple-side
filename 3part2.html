@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #2c2727;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+header nav ul li a:hover {
+color: #e4ac7c;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow:hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1s ease-in-out;
+}
+
+#slide1 {
+    background:url("https://www.urbanebox.com/wp-content/uploads/2016/12/tamara-1.jpg");
+    background-size: cover;
+}
+
+
+#slide2 {
+    background:url("https://www.studiosuits.com/cdn/shop/articles/main-image_86c2e5e3-b905-46d5-990f-5f598c7326c0_1100x.jpg?v=1710233966");
+     background-size: cover;
+    }
+
+.text {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    color: white;
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cta-button:hover {
+    background-color: #e67e22;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.active .model {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.active .text {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.active .overlay {
+    opacity: 0.1;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('fashion-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #000000;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 24px;
+}
+
+.shop-now-btn {
+    background-color: #ff4081;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.shop {
+    padding: 50px 20px;
+    text-align: center;
+}
+.product-categories {
+    margin-bottom: 30px;
+}
+
+.category-button {
+  
+    color: #000000;
+    padding: 10px 20px;
+border: radius 1px;
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.category-button:hover {
+    background-color: #555;
+}
+
+/* Product Grid */
+.products {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.add-to-cart {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+            gap: 20px; /* Adds space between columns */
+            margin: 20px;
+        }
+
+        .grid-item {
+            background-color: #b3a9a9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .category-button {
+            color: #000000;
+    padding: 10px 20px;
+border: radius 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .subcategory {
+            display: none; /* Hidden by default */
+            margin-top: 15px;
+        }
+
+        .subcategory h4 {
+            margin: 5px 0;
+        }
+    </style>
+        <body>
+    <header>
+        <div class="logo">Fashion Store</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cart">Cart </a></li>
+            </ul>
+        </nav>
+    </header>
+    <br><br><br><br><br><br>
+    <section>
+        <div class="slider">
+            <div class="slide" id="slide1">
+                <div class="overlay"></div>
+                <div class="text">
+                    <h1>Latest Fashion Trends</h1>
+                    <p>Discover the hottest styles of the season.</p>
+                    <button class="cta-button">Shop Now</button>
+                </div>
+            </div>
+            
+            <div class="slide" id="slide2">
+                <div class="overlay"></div>
+                <div class="text">
+                    <h1>SUMMER COLLECTION</h1>
+                    <p>Feel the heat with our exclusive summer collection.</p>
+                </div>
+            </div>
+            <!-- Add more slides as needed -->
+        </div>
+    </section>
+    <div class="grid-container">
+        <div class="grid-item">
+            <button class="category-button" data-category="men"><h3>Men</h3></button>
+            <div class="subcategory" id="men-subcategories">
+                <h4>T-Shirts</h4>
+                <h4>Suits</h4>
+                <h4>Shoes</h4>
+            </div>
+            <p>Content for column 1</p>
+        </div>
+
+        <div class="grid-item">
+            <button class="category-button" data-category="ladies"><h3>Ladies </h3></button>
+            <p>Content for column 2</p>
+        </div>
+
+        <div class="grid-item">
+            <button class="category-button" data-category="children"><h3>Children </h3></button>
+            <p>Content for column 3</p>
+        </div>
+
+    </div>
+    <section id="shop" class="products">
+        <h2>Our Collection</h2>
+<br><br><br>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$25.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$30.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Add more product cards as needed -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fashion Store. All rights reserved.</p>
+    </footer>
+
+    <script src="3part2.js"></script>
+</body>
+
+</html>

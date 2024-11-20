@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store Animation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body, html {
+    margin: 0;
+    padding: 0;
+    font-family:Arial,sans-serif;
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #1d1b1b;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;;
+}
+
+header h1 {
+    margin: 0;
+    justify-content: center;
+    text-align:center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1s ease-in-out;
+}
+
+#slide1 {
+    background:url("https://www.urbanebox.com/wp-content/uploads/2016/12/tamara-1.jpg");
+    background-size: cover;
+}
+
+
+#slide2 {
+    background:url("https://www.studiosuits.com/cdn/shop/articles/main-image_86c2e5e3-b905-46d5-990f-5f598c7326c0_1100x.jpg?v=1710233966");
+     background-size: cover;
+    }
+
+.text {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    color: white;
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cta-button:hover {
+    background-color: #e67e22;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.active .model {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.active .text {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.active .overlay {
+    opacity: 0.1;
+}
+
+.shop {
+    padding: 50px 20px;
+    text-align: center;
+}
+.product-categories {
+    margin-bottom: 30px;
+}
+
+.category-button {
+    background-color: #645555;
+    color: #fff;
+    padding: 10px 20px;
+    border:black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.category-button:hover {
+    background-color: #555;
+}
+
+.sub-category-group {
+    display: none; /* Hide sub-category buttons by default */
+    margin-top: 10px;
+}
+
+.sub-category-button {
+    background-color:black;
+    color: #fffdfd;
+    padding: 8px 16px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+.sub-category-button:hover {
+    background-color: #666;
+}
+
+</style>
+<body>
+    <header>
+        <h1><i>FASHION STORE</i></h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="slider">
+        <div class="slide" id="slide1">
+            <div class="overlay"></div>
+            <div class="text">
+                <h1>Latest Fashion Trends</h1>
+                <p>Discover the hottest styles of the season.</p>
+                <button class="cta-button">Shop Now</button>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide2">
+            <div class="overlay"></div>
+            <div class="text">
+                <h1>Summer COLLECTION</h1>
+                <p>Feel the heat with our exclusive summer collection.</p>
+                <button class="cta-button">Explore</button>
+            </div>
+        </div>
+        <!-- Add more slides as needed -->
+    </div>
+    <section id="shop" class="shop">
+        <h1>OUR PRODUCTS 👇✨</h1>
+        <div class="product-categories">
+            <button class="category-button" data-category="men">Men</button>
+            <button class="category-button" data-category="ladies">Ladies</button>
+            <button class="category-button" data-category="children">Children</button>
+
+                    <!-- Sub-Category Buttons for Men -->
+        <div class="sub-category-group" data-main-category="men">
+            <button class="sub-category-button" data-sub-category="T-Shirt + Short">T-Shirt + Short</button>
+            <button class="sub-category-button" data-sub-category="shorts">Shorts</button>
+            <button class="sub-category-button" data-sub-category="Shirts">Shirts</button>
+            <button class="sub-category-button" data-sub-category="Shoes"> Shoes</button>
+        </div>
+        
+        <!-- Sub-Category Buttons for Ladies -->
+        <div class="sub-category-group" data-main-category="ladies">
+            <button class="sub-category-button" data-sub-category="dresses">Dresses</button>
+            <button class="sub-category-button" data-sub-category="skirts">Skirts</button>
+        </div>
+        
+        <!-- Sub-Category Buttons for Children -->
+        <div class="sub-category-group" data-main-category="children">
+            <button class="sub-category-button" data-sub-category="Clothes">Clothes</button>
+            <button class="sub-category-button" data-sub-category="Rompers">Rompers</button>
+        </div>
+    </div>
+         <h2>SUMMER Collection</2>
+
+    <script src="3.js"></script>
+</body>
+</html>

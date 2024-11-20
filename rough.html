@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom T-Shirt Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .hero {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: url('https://www.sliderrevolution.com/wp-content/uploads/2023/06/fashion-shop-slider.gif') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shop {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .product-categories {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .category-button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100px;
+            height: 50px;
+        }
+
+        .category-button:hover {
+            background-color: #555;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 350px;
+            height: 500px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            display: none; /* Hidden by default, shown by JavaScript */
+        }
+
+        .product[data-category="men"] {
+            display: block; /* Show men's products by default */
+        }
+
+        .product img {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%; 
+            max-width: 330px; 
+            max-height: 360px; 
+            display: block;
+            margin: 0 auto 10px; 
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .buy-now, .add-to-cart {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .buy-now:hover, .add-to-cart:hover {
+            background-color: #2980b9;
+        }
+
+        .contact {
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        #contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #contact-form input, #contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #contact-form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #contact-form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+        }
+
+        /* Shopping Cart */
+        #cart {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item h3, .cart-item p {
+            margin: 0;
+        }
+
+        .cart-item p {
+            margin-top: 5px;
+        }
+        
+        /* Horizontal animation */
+        .animated-image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .animated-image {
+            position: absolute;
+            width: 970px; /* Adjust based on the image size */
+            animation: move-horizontal 10s linear infinite;
+        }
+
+        @keyframes move-horizontal {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -970px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CLOTHING BRAND</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="slider">
+            <div class="slide active">
+                <div class="caption">
+                    <h2>Men's Collection</h2>
+                    <p>Explore the latest trends in men's fashion.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="caption">
+                    <h2>Ladies' Collection</h2>
+                    <p>Discover beautiful designs for women.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="caption">
+                    <h2>Children's Collection</h2>
+                    <p>Find fun and colorful styles for kids.</p>
+                </div>
+            </div>
+        </div>
+        <a href="#shop" class="cta-button">Shop Now</a>
+    </section>
+
+    <section id="shop" class="shop">
+        <h2>Our Products</h2>
+        <div class="product-categories">
+            <button class="category-button" data-category="men">Men</button>
+            <button class="category-button" data-category="ladies">Ladies</button>
+            <button class="category-button" data-category="children">Children</button>
+        </div>
+        <div class="product-grid">
+            <div class="product" data-category="men" data-sub-category="shorts">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuQKis3oGSgt2QbyXcw0sVt4Fw8Fcrn_Db4g&s" alt="Men's Shorts 1">
+                <h3>Men's Shorts</h3>
+                <p>$15.00</p>
+                <button class="buy-now">Buy Now</button>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product" data-category="ladies" data-sub-category="skirts">
+                <img src="https://m.media-amazon.com/images/I/612jw+V2xcL._AC_SY879_.jpg" alt="Ladies' Skirt 12">
+                <h3><i>Women's Casual High Waisted Boho Long Maxi Skirts</i></h3>
+                <p>$18.00</p>
+                <button class="buy-now">Buy Now</button> 
+                <button class="add-to-cart">Add to Cart</button>
+
+                <!-- Animated image -->
+                <div class="animated-image-container">
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/280d1036-36bf-41af-8b7d-0d200cc6a524.__CR0,0,970,600_PT0_SX970_V1___.jpg" class="animated-image" alt="Animated Skirt Image">
+                </div>
+            </div>
+
+            <!-- Additional products... -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 CLOTHING BRAND. All rights reserved.</p>
+    </footer>
+
+    <section id="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <button id="checkout-button">Proceed to Checkout</button>
+    </section>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Filter products based on category
+            const categoryButtons = document.querySelectorAll('.category-button');
+            const products = document.querySelectorAll('.product');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.getAttribute('data-category');
+                    products.forEach(product => {
+                        product.style.display = product.getAttribute('data-category') === category ? 'block' : 'none';
+                    });
+                });
+            });
+
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productElement = this.closest('.product');
+                    const productId = productElement.getAttribute('data-category') + '-' + productElement.getAttribute('data-sub-category');
+                    const productName = productElement.querySelector('h3').innerText;
+                    const productPrice = productElement.querySelector('p').innerText;
+
+                    addToCart(productId, productName, productPrice);
+                });
+            });
+
+            // Buy now functionality
+            const buyNowButtons = document.querySelectorAll('.buy-now');
+            buyNowButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productElement = this.closest('.product');
+                    const productId = productElement.getAttribute('data-category') + '-' + productElement.getAttribute('data-sub-category');
+                    const productName = productElement.querySelector('h3').innerText;
+                    const productPrice = productElement.querySelector('p').innerText;
+
+                    addToCart(productId, productName, productPrice);
+                    window.location.href = '#cart'; // Redirect to cart
+                });
+            });
+
+            // Display cart items
+            displayCart();
+
+            // Checkout button
+            document.getElementById('checkout-button').addEventListener('click', function () {
+                alert('Proceeding to checkout...');
+            });
+        });
+
+        function addToCart(id, name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = cart.map(item => `
+                <div class="cart-item">
+                    <h3>${item.name}</h3>
+                    <p>${item.price} x ${item.quantity}</p>
+                </div>
+            `).join('');
+            document.getElementById('cart-items').innerHTML = cartItems;
+        }
+    </script>
+</body>
+</html>
+            
